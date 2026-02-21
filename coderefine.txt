@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generative AI Code Analyzer</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 85%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+select, textarea, button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+textarea {
+    height: 200px;
+    font-family: monospace;
+}
+
+button {
+    background-color: #667eea;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #5a67d8;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f4f4f4;
+    border-radius: 8px;
+}
+
+.result h3 {
+    margin-bottom: 5px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+pre {
+    background: #222;
+    color: #00ff99;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+.loading {
+    text-align: center;
+    color: #667eea;
+    font-weight: bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 Generative AI Code Analyzer</h1>
+
+    <label>Select Language:</label>
+    <select id="language">
+        <option value="javascript">JavaScript</option>
+        <option value="python">Python</option>
+        <option value="java">Java</option>
+        <option value="cpp">C++</option>
+    </select>
+
+    <label>Paste Your Code:</label>
+    <textarea id="codeInput" placeholder="Paste your source code here..."></textarea>
+
+    <button onclick="analyzeCode()">Analyze Code</button>
+
+    <div id="loading" class="loading"></div>
+
+    <div id="result" class="result" style="display:none;">
+        <h2>🔍 Analysis Results</h2>
+
+        <h3>🐞 Bugs</h3>
+        <ul id="bugs"></ul>
+
+        <h3>⚡ Performance Issues</h3>
+        <ul id="performance"></ul>
+
+        <h3>🔐 Security Issues</h3>
+        <ul id="security"></ul>
+
+        <h3>✨ Optimized Code</h3>
+        <pre id="optimizedCode"></pre>
+    </div>
+</div>
+
+<script>
+function analyzeCode() {
+    const code = document.getElementById("codeInput").value;
+    const loading = document.getElementById("loading");
+    const resultDiv = document.getElementById("result");
+
+    if (code.trim() === "") {
+        alert("Please paste some code first!");
+        return;
+    }
+
+    loading.innerText = "Analyzing code using AI...";
+    resultDiv.style.display = "none";
+
+    setTimeout(() => {
+        document.getElementById("bugs").innerHTML =
+            "<li>Unused variable detected</li><li>Possible null reference error</li>";
+
+        document.getElementById("performance").innerHTML =
+            "<li>Use caching or memoization</li><li>Avoid nested loops if possible</li>";
+
+        document.getElementById("security").innerHTML =
+            "<li>Avoid hardcoded credentials</li><li>Sanitize user inputs</li>";
+
+        document.getElementById("optimizedCode").innerText =
+`// Optimized Example
+function sum(a, b) {
+    if (a == null || b == null) return 0;
+    return a + b;
+}`;
+
+        loading.innerText = "";
+        resultDiv.style.display = "block";
+
+    }, 2000);
+}
+</script>
+
+</body>
+</html
